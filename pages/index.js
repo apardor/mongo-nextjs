@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import apple from '../public/apple.jpg'
 
 export async function getServerSideProps(context) {
   let res = await fetch("http://localhost:3000/api/products", {
@@ -15,7 +16,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home(props) {
-  console.log(props.food.food, "props in home");
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,13 +25,14 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="container">
         {props?.food.food.map((food) => {
           return food.food.map((data) => {
             return (
               <article key={data.id}>
                 <h3>{data.name}</h3>
                 <p>quantity: {data.quantity}</p>
+                <img style={{width:'300px'}} src= {`${data.name}.jpg `}alt={data.name}/>
               </article>
             );
           });
