@@ -1,9 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import apple from '../public/apple.jpg';
 import Image from 'next/image';
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   let res = await fetch("http://localhost:3000/api/products", {
     method: "GET",
     headers: {
@@ -11,6 +10,7 @@ export async function getServerSideProps(context) {
     },
   });
   let food = await res.json();
+  console.log('building static props', food)
   return {
     props: { food },
   };
