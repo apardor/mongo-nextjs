@@ -33,7 +33,7 @@ export default function Home(props) {
               <article key={data.id}>
                 <h3>{data.name}</h3>
                 <p>quantity: {data.quantity}</p>
-                <img style={{width:'300px'}} src= {`${data.name}.jpg `}alt={data.name}/>
+                <Image style={{width:'300px'}} src= {`${data.name}.jpg `}alt={data.name}/>
               </article>
             );
           });
