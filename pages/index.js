@@ -7,7 +7,6 @@ export async function getStaticProps() {
   const client = await clientPromise;
   const db = client.db("productsdb");
   const food = (await db.collection("food").find({}).toArray())[0];
-  console.log('what is loooove', JSON.stringify(food._id))
   return {
     props: {
       food: [food.food]
