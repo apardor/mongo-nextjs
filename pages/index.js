@@ -28,17 +28,17 @@ export default function Home(props) {
       <h1> South Gallery Mongo</h1>
 
       <main className="container">
-        {props?.food.food.map((food) => {
+        {props? props?.food.food.map((food) => {
           return food.food.map((data) => {
             return (
               <article key={data.id}>
                 <h3>{data.name}</h3>
                 <p>quantity: {data.quantity}</p>
-                <Image width={300} height={400} src= {`/${data.name}.jpg `} alt={data.name}/>
+                <Image width={300} height={400} src= {`/${data.name}.jpg `} alt={data.name} priority='true'/>
               </article>
             );
           });
-        })}
+        }): ''}
       </main>
     </div>
   );
