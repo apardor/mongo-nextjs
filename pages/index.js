@@ -1,16 +1,17 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Image from 'next/image';
-import clientPromise from "../lib/mongodb";
 
-export async function getStaticProps() {
-  const client = await clientPromise;
-  const db = client.db("productsdb");
-  const food = (await db.collection("food").find({}).toArray())[0];
-  return {
-    props: {
-      food: [food.food]
+export async function getServerSideProps(context) {
+  let res = await fetch(process.env.HOST + "/api/products", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
+  });
+  let food = await res.json();
+  return {
+    props: { food },
   };
 }
 
@@ -26,8 +27,8 @@ export default function Home(props) {
       <h1> South Gallery Mongo</h1>
 
       <main className="container">
-        {props? props?.food.map((food) => {
-          return food.map((data) => {
+        {props? props?.food.food.map((food) => {
+          return food.food.map((data) => {
             return (
               <article key={data.id}>
                 <h3>{data.name}</h3>
