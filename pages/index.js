@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import apple from '../public/apple.jpg'
+import apple from '../public/apple.jpg';
+import Image from 'next/image';
 
 export async function getServerSideProps(context) {
   let res = await fetch("http://localhost:3000/api/products", {
@@ -33,7 +34,7 @@ export default function Home(props) {
               <article key={data.id}>
                 <h3>{data.name}</h3>
                 <p>quantity: {data.quantity}</p>
-                <Image style={{width:'300px'}} src= {`${data.name}.jpg `}alt={data.name}/>
+                <Image width={300} height={400} src= {`/${data.name}.jpg `} alt={data.name}/>
               </article>
             );
           });
