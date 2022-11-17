@@ -3,14 +3,13 @@ import styles from "../styles/Home.module.css";
 import Image from 'next/image';
 
 export async function getStaticProps(context) {
-  let res = await fetch("http://localhost:3000/api/products", {
+  let res = await fetch("/api/products", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
   let food = await res.json();
-  console.log('building static props', food)
   return {
     props: { food },
   };
